@@ -52,17 +52,20 @@
               result: 0,
             });
           } else {
-            this.setState({
-              error: null,
-            });
-
-            this.setState({
-              inputValue: event.target.value,
-              result: convertCalculator(
-                this.state.inputValue,
-                this.state.optionValue
-              ),
-            });
+            this.setState(
+              {
+                error: null,
+                inputValue: event.target.value,
+              },
+              () => {
+                this.setState({
+                  result: convertCalculator(
+                    this.state.inputValue,
+                    this.state.optionValue
+                  ),
+                });
+              }
+            );
           }
         };
 
