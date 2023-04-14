@@ -1,0 +1,30 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+#root {
+  display: grid;
+  height: 90vh;
+  place-items: center;
+  font-family: "Pretendard";
+  font-size: 20px;
+}
+#root .conversion input {
+  width: 400px;
+  height: 60px;
+  -webkit-margin-end: 10px;
+          margin-inline-end: 10px;
+  font-size: 26px;
+}
+#root .conversion span {
+  font-size: 26px;
+  -webkit-margin-end: 10px;
+          margin-inline-end: 10px;
+}
+#root .conversion .error {
+  color: crimson;
+}
+#root .conversion select {
+  height: 60px;
+  width: 120px;
+  font-size: inherit;
+  text-align: center;
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

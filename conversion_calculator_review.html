@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <!--리액트 사용 준비-->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function convertCalculator(userInput, convertValue) {
+        return userInput * convertValue;
+      }
+      //애플리케이션 클래스 생성하기
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            inputValue: 0,
+            result: 0,
+            optionValue: 10,
+            error: null,
+          };
+        }
+
+        render() {
+          return (
+            <div className="conversion">
+              <input
+                type="text"
+                onChange={this.inputChange}
+                placeholder={this.state.inputValue}
+              />
+              <span>cm = {this.state.result}</span>
+              <select onChange={this.selectChange}>
+                <option value="10">mm</option>
+                <option value="0.1">m</option>
+                <option value="0.393701">inch</option>
+              </select>
+              <p className="error">{this.state.error}</p>
+            </div>
+          );
+        }
+
+        inputChange = (event) => {
+          if (isNaN(event.target.value)) {
+            this.setState({
+              error: "Please Enter numbers only",
+              result: 0,
+            });
+          } else {
+            this.setState({
+              error: null,
+            });
+
+            this.setState({
+              inputValue: event.target.value,
+              result: convertCalculator(
+                this.state.inputValue,
+                this.state.optionValue
+              ),
+            });
+          }
+        };
+
+        selectChange = (event) => {
+          this.setState({
+            result: convertCalculator(
+              this.state.inputValue,
+              event.target.value
+            ),
+            optionValue: event.target.value,
+          });
+        };
+      }
+
+      //출력하기
+      const container = document.getElementById("root");
+      ReactDOM.render(<App />, container);
+    </script>
+  </body>
+</html>
